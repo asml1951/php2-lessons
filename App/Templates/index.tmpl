@@ -1,0 +1,16 @@
+<html>
+<head>
+    <body>
+
+     <div><h1>Latest news</h1></div>
+      <ul>
+          <?php foreach($data as  $row){ ?>
+          <li><div><h3><a href="/article.php?id=<?php echo $row->id; ?>"><?php echo $row->title; ?></a></h3></div>
+              <div><?php echo $row->content; ?></div>
+              <?php } ?>
+          </li>
+      </ul>
+
+    </body>
+</head>
+</html>
