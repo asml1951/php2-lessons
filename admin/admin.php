@@ -1,0 +1,9 @@
+<?php
+
+require __DIR__ . '/../autoload.php';
+
+
+$articles = (\App\Models\Article::findAll());
+
+
+include __DIR__ . '/../App/Templates/admin_panel_1.tmpl';

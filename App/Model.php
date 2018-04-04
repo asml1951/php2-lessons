@@ -26,7 +26,7 @@ abstract class Model
 
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=' . $id;
-
+        
         $res = $db->query(
             $sql,
             [],
@@ -38,6 +38,66 @@ abstract class Model
             return false;
         }
     }
+
+    public static function deleteById($id)
+    {
+        $db = new Db();
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=' . $id;
+        $res = $db->execute($sql,[]);
+    }
+
+    public function insert()
+    {
+        $fields = get_object_vars($this);
+
+        $cols = [];
+        $data = [];
+
+        foreach ($fields as $name => $value) {
+            if ('id' == $name) {
+                continue;
+            }
+            $cols[] = $name;
+            $data[':' . $name] = $value;
+        }
+        $sql = 'INSERT INTO ' . static::TABLE . '(' . implode (',', $cols) . ') 
+        VALUES(' . implode(',',array_keys($data)) .')';
+
+        $db = new Db();
+        $res = $db->execute($sql,$data);
+        $this->id = $db->getLastId();
+    }
+
+    function update()
+    {
+        $fields = get_object_vars($this);
+
+        $cols = [];
+        $data = [];
+        $sql = '';
+
+        foreach ($fields as $name => $value) {
+            if ('id' == $name) {
+                continue;
+            }
+            $cols[] = $name;
+            $data[':' . $name] = $value;
+            $sql = $sql . $name . '=\'' . $value . '\',';
+        }
+
+        $sql = rtrim($sql,',');
+
+        $sql = 'UPDATE ' . static::TABLE . ' SET ' . $sql . ' WHERE id= ' . $this->id;
+        echo $sql;
+        $db = new Db();
+        $res = $db->execute($sql,$data);
+
+    }
+
+
+
+
+
         public static function getLatestNews()
     {
         $db = new Db();

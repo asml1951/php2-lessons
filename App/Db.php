@@ -11,18 +11,17 @@ class Db
     {
         $config = (include __DIR__ . '/../config.php')['db'];
 
-        $opt = [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-            \PDO::ATTR_EMULATE_PREPARES => false,
-        ];
+
 
         $this->dbh = new \PDO(
             'mysql:host='.$config['host'] . ';dbname=' .$config['dbname'],
             $config['user'],
             $config['password'],
-            $opt
+            [
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            ]
         );
+        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     public function query($sql, $data=[], $class)
@@ -34,10 +33,15 @@ class Db
 
     public function execute($sql, $params = [])
     {
-        $stmt = $this->dbh->prepare($sql);
-        $result = $stmt->execute($params);
+        $sth = $this->dbh->prepare($sql);
+        $result = $sth->execute($params);
         return $result;
 
+    }
+
+    public function getLastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }
