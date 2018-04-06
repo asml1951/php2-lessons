@@ -25,25 +25,23 @@ abstract class Model
     {
 
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=' . $id;
-        
-        $res = $db->query(
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id' ;
+
+        $result = $db->query(
             $sql,
-            [],
+            [':id' => $id],
             static::class
         );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
+   //     var_dump($result[0]);
+            return $result ? $result[0] : null;
+
     }
 
     public static function deleteById($id)
     {
         $db = new Db();
-        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=' . $id;
-        $res = $db->execute($sql,[]);
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=:id';
+        $res = $db->execute($sql,[':id' => $id]);
     }
 
     public function insert()

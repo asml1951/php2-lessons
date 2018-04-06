@@ -24,6 +24,7 @@ class Article extends Model
             static::class
         );
 
+
         foreach ($res as $article) {
 
             $au_id = $article->author_id;
@@ -32,14 +33,14 @@ class Article extends Model
                 $author = Author::findById($au_id);
 
 
-                $article->author_id = $author[0]->first_name . ' ' . $author[0]->last_name;
+                $article->author_id = $author->first_name . ' ' . $author->last_name;
             }
 
 
 
 
         }
-
+ //    var_dump($res);
         return $res;
     }
     }
