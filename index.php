@@ -2,9 +2,18 @@
 
 require __DIR__ . '/autoload.php';
 
- $data = \App\Models\Article::getLatestNews();
+$view = new \App\Models\View();
 
-require_once('App/Templates/index.tmpl');
+$view->articles = \App\Models\Article::findAll() ;
+
+
+//$author = \App\Models\Author::findById(3);
+
+
+
+$view->display(__DIR__ . '/App/Templates/index.tmpl');
+
+//require_once('App/Templates/index.tmpl');
 
 
 

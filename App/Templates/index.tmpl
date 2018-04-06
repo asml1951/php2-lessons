@@ -1,12 +1,19 @@
+<?php
+
+/** @var \App\View $this */
+
+
+?>
 <html>
 <head>
     <body>
 
      <div><h1>Последние новости</h1></div>
       <ul>
-          <?php foreach($data as  $row){ ?>
-          <li><div><h3><a href="/article.php?id=<?php echo $row->id; ?>"><?php echo 'Новость №' . $row->id . ': ' . $row->title; ?></a></h3></div>
+          <?php  foreach($this->articles as  $row){ ?>
+          <li><div><h3><a href="/article.php?id=<?php echo $row->id; ?>"><?php echo 'Новость №' . $row->id . ' ' . 'Автор: ' . $row->author_id . '  ' . '<br>'. 'Заголовок: ' . $row->title; ?></a></h3></div>
               <div><?php echo $row->content; ?></div>
+              <hr>
               <?php } ?>
           </li>
       </ul>
