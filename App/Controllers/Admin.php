@@ -13,7 +13,7 @@ use App\Models\Article;
 use App\Models\View;
 
 
-class Index extends Controller
+class Admin extends Controller
 {
     protected function handle()
     {
@@ -21,7 +21,7 @@ class Index extends Controller
 
         $this->view->articles = Article::findAll() ;
 
-        $this->view->display(__DIR__ . '/../../App/Templates/index.tmpl');
+        $this->view->display(__DIR__ . '/../../App/Templates/admin_panel_1.tmpl');
 
     }
 
