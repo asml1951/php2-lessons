@@ -31,7 +31,7 @@ abstract class Model
             $sql,
             [],
             static::class
-        );
+        )[0];
         if (!empty($res)) {
             return $res;
         } else {
