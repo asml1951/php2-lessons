@@ -2,5 +2,5 @@
 
 require __DIR__ . '/../autoload.php';
 
-$data = \App\Models\Article::findById(3);
+$data = \App\Models\Article::findById(43);
 var_dump($data);

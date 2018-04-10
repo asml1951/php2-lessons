@@ -4,4 +4,4 @@ require __DIR__ . '/autoload.php';
 
 $data = \App\Models\Article::getLatestNews();
 
-require_once('App/Templates/index.tmpl');
+require_once(__DIR__ . '/App/Templates/index.tmpl');

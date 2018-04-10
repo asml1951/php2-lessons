@@ -29,9 +29,9 @@ abstract class Model
 
         $res = $db->query(
             $sql,
-            [],
-            static::class
-        );
+            static::class,
+            []
+        )[0];   //Исправвлено. $res стал объектом.
         if (!empty($res)) {
             return $res;
         } else {
@@ -45,8 +45,8 @@ abstract class Model
 
         $res = $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
         if (!empty($res)) {
             return $res;
