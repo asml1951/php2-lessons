@@ -20,8 +20,8 @@ class Article extends Model
         $sql = 'SELECT * FROM news';
         $res = $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
 
 
