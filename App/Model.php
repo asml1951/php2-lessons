@@ -29,8 +29,8 @@ abstract class Model
         
         $res = $db->query(
             $sql,
+            static::class,
             [],
-            static::class
         );
         if (!empty($res)) {
             return $res;
@@ -105,8 +105,8 @@ abstract class Model
 
         $res = $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
         if (!empty($res)) {
             return $res;
