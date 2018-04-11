@@ -41,6 +41,7 @@ class Article extends Model
         );
         /**
          * Определяет имя и фамилию автора по его $id
+         "var Article $article
          */
         foreach ($res as $article) {
 
