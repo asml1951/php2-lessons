@@ -4,6 +4,7 @@ require __DIR__ . '/autoload.php';
 
 $view = new \App\Models\View();
 
+var_dump(\App\Models\Article::findAll());
 $view->articles = \App\Models\Article::findAll() ;
 
 

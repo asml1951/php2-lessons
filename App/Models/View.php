@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Alex Smolin alex@mail.ru
+ */
 
 
 namespace App\Models;
@@ -44,7 +47,11 @@ class View implements \Countable, \ArrayAccess
         return isset($this->data[$name]);
     }
   */
-
+    /**
+     * Сохраняет выходные данные в буфере
+     * @param $template
+     * @return string
+     */
     public function render($template)
     {
         ob_start();

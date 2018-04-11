@@ -1,9 +1,7 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: smolin
- * Date: 05.04.2018
- * Time: 13:42
+ * @author Alex Smolin alex@mail.ru
  */
 
 namespace App\Models;
@@ -11,8 +9,15 @@ namespace App\Models;
 
 use App\Model;
 
+/**
+ * Class Author описывает авторов статей
+ * @package App\Models
+ */
 class Author extends Model
 {
+    /**
+     * @var string
+     */
     public const TABLE = 'authors';
 
     public $first_name;
