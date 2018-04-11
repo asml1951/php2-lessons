@@ -24,7 +24,8 @@ class Db
         $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function query($sql,$class , $data=[])
+
+    public function query($sql, $class, $data=[])
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($data);

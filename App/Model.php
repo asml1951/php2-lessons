@@ -32,6 +32,7 @@ abstract class Model
             static::class,
             [':id'=> $id]
         );
+
         if (!empty($res)) {
             return $res;
         } else {
