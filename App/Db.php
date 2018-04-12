@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\DbException;
 
 class Db
 {
@@ -27,7 +28,10 @@ class Db
     public function query($sql, $class , $data=[])
     {
         $sth = $this->dbh->prepare($sql);
-        $sth->execute($data);
+        $res = $sth->execute($data);
+        if(!$res) {
+            throw new DbException('Запрос не был выполнен!');
+        }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 

@@ -13,7 +13,7 @@ abstract class Model
     {
         $db = new Db();
 
-        $sql = 'SELECT * FROM ' . static::TABLE;
+        $sql = 'SELECT *  ' . static::TABLE;
         return $db->query(
             $sql,
            static::class ,
