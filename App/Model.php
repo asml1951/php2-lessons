@@ -29,8 +29,8 @@ abstract class Model
 
         $result = $db->query(
             $sql,
-            [':id' => $id],
-            static::class
+            static::class,
+            [':id' => $id]
         );
    //     var_dump($result[0]);
             return $result ? $result[0] : null;
