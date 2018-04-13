@@ -13,9 +13,14 @@ try {
     $ctrl = new $class();
     $ctrl();
 
-} catch (App\DbException $error) {
-    echo 'Ошибка выполнения запроса к БД' . $error->getMessage();
+
+} catch (\App\DbException  $error) {
+    echo '<h3>Проблема с подключением к базе данных : ' .$error->getMessage() . '</h3>';
+}  catch (\PDOException $error) {
+    echo 'Ошибка выполнения запроса : ' . $error->getMessage();
     die;
+}  catch(\App\NotFoundException $error) {
+    echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
 }
 
 
