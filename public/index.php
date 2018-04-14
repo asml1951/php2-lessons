@@ -23,6 +23,20 @@ try {
     echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
 }
 
+/*
+try {
+$article = new \App\Models\Article();
+$data = ['','2','фы'];
+
+$article->fill($data);
+
+} catch (\App\Errors $errors){
+
+    foreach($errors->all() as $error ) {
+        echo '<h1>' . $error->getMessage() . '</h1>' . '<br>' ;
+    }
+
+}  */
 
 
 
