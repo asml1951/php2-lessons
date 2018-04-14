@@ -10,8 +10,7 @@ class Db
 
     public function __construct()
     {
-        $config = (include __DIR__ . '/сonfig.php')['db'];
-
+        $config = (include __DIR__ . '/config.php')['db'];
 
         try {
 
