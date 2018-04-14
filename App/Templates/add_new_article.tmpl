@@ -14,7 +14,7 @@
 <div class="container">
     <h2>Добавьте свежую новость</h2>
 
-    <form action="add_new_article.php" >
+    <form action="/add_new_article/" >
 
         <div class="form-group">
             <label for="exampleFormControlInput1">Заголовок новости</label>
@@ -27,12 +27,17 @@
             <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="Введите текст новости"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">ID автора</label>
+            <input type="text" class="form-control" name="author_id" id="exampleFormControlTextarea1"  placeholder="Введите ID автора"></input>
+        </div>
+
         <button type="submit" class="btn btn-primary mb-2">Добавить новость</button>
 
     </form>
 
     <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;">
-		    <a href="../../admin/admin.php" ><button type="button" class="btn btn-primary">Вернуться на админ панель</button></a>
+		    <a href="/admin" ><button type="button" class="btn btn-primary">Вернуться на админ панель</button></a>
     </div>
 </div>
 

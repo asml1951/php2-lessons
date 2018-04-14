@@ -1,7 +1,7 @@
 <?php
 use App\Db;
 
-require __DIR__ . '/../autoload.php';
+require __DIR__ . '/../App/autoload.php';
 
 if(!empty($_REQUEST)) {
 

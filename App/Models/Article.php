@@ -20,10 +20,9 @@ class Article extends Model
         $sql = 'SELECT * FROM news';
         $res = $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
-
 
         foreach ($res as $article) {
 
@@ -35,13 +34,8 @@ class Article extends Model
 
                 $article->author_id = $author->first_name . ' ' . $author->last_name;
             }
-
-
-
-
         }
- //    var_dump($res);
         return $res;
     }
-    }
+}
 

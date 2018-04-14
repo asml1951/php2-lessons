@@ -14,10 +14,11 @@ abstract class Model
         $db = new Db();
 
         $sql = 'SELECT * FROM ' . static::TABLE;
+
         return $db->query(
             $sql,
-            [],
-            static::class
+           static::class ,
+            []
         );
     }
 
@@ -25,17 +26,25 @@ abstract class Model
     {
 
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id' ;
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
+
 
         $result = $db->query(
             $sql,
-            [':id' => $id],
-            static::class
+            static::class,
+            [':id' => $id]
         );
-   //     var_dump($result[0]);
-            return $result ? $result[0] : null;
+        if (!$result) {
+            throw new \App\NotFoundException(
+                'Ошибка 404 : Объект с id = ' . $id . ' не найден');
+            die;
 
+        }
+
+        return $result ? $result[0] : null;
     }
+
+
 
     public static function deleteById($id)
     {

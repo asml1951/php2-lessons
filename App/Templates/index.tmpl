@@ -8,10 +8,10 @@
 <head>
     <body>
 
-     <div><h1>Последние новости</h1></div>
+     <div><h1>Все новости</h1></div>
       <ul>
           <?php  foreach($this->articles as  $row){ ?>
-          <li><div><h3><a href="/?ctrl=Article&id=<?php echo $row->id; ?>"><?php echo 'Новость №' . $row->id . ' ' . 'Автор: ' . $row->author_id . '  ' . '<br>'. 'Заголовок: ' . $row->title; ?></a></h3></div>
+          <li><div><h3><a href="/article/?id=<?php echo $row->id; ?>"><?php echo 'Новость №' . $row->id . ' ' . 'Автор: ' . $row->author_id . '  ' . '<br>'. 'Заголовок: ' . $row->title; ?></a></h3></div>
               <div><?php echo $row->content; ?></div>
               <hr>
               <?php } ?>
