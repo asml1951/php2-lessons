@@ -13,7 +13,7 @@ use App\Models\Article;
 use App\Models\View;
 
 
-class index extends Controller
+class Index extends Controller
 {
     protected function handle()
     {

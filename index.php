@@ -11,9 +11,9 @@ $view->display(__DIR__ . '/App/Templates/index.tmpl');
 */
 
 $ctrl = $_GET['ctrl'] ?? 'Index';
-$class = '\App\Controllers\\' . $ctrl;
-
-$ctrl = new $class();
+$class = 'Controllers\\' . $ctrl;
+$ctrl = new \App\Controllers\Index();
+//$ctrl = new $class();
 $ctrl();
 
 
