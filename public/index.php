@@ -16,11 +16,14 @@ try {
 
 } catch (\App\DbException  $error) {
     echo '<h3>Проблема с подключением к базе данных : ' .$error->getMessage() . '</h3>';
+    \App\Logger::getInstance()->addMessage($error->getMessage(),$error->getFile(), $error->getLine());
 }  catch (\PDOException $error) {
     echo 'Ошибка выполнения запроса : ' . $error->getMessage();
-    die;
+    \App\Logger::getInstance()->addMessage($error->getMessage(),$error->getFile(), $error->getLine());
+
 }  catch(\App\NotFoundException $error) {
     echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
+    \App\Logger::getInstance()->addMessage($error->getMessage(),$error->getFile(), $error->getLine());
 }
 
 /*
