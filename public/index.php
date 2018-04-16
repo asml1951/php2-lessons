@@ -2,6 +2,9 @@
 
 include __DIR__ . '/../App/autoload.php';
 
+use SebastianBergmann\Timer\Timer;
+
+
 
 $uri = $_SERVER['REQUEST_URI'];
 $parts = explode('/',$uri);
@@ -22,6 +25,8 @@ try {
 }  catch(\App\NotFoundException $error) {
     echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
 }
+
+
 
 
 
