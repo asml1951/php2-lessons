@@ -1,5 +1,6 @@
 <html>
 <head>
+</head>
 <body>
 
 <div><h1>Новость № <?php echo $this->article->id; ?></h1></div>
@@ -11,7 +12,8 @@
 
     </li>
 </ul>
-
+<div>Потребление ресурсов:<?=  '  ' . SebastianBergmann\Timer\Timer::resourceUsage(); ?>
+</div>
 </body>
-</head>
-</html
+
+</html>

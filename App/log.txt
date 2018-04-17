@@ -1,0 +1,2 @@
+2018-04-14 18:10:37 Ошибка 404 : Объект с id = 100 не найден /usr/home/smolin/test_SS/App/Model.php 38
+2018-04-14 18:11:07 Ошибка 404 : Объект с id = 103 не найден /usr/home/smolin/test_SS/App/Model.php 38

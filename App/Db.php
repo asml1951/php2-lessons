@@ -11,7 +11,7 @@ class Db
     public function __construct()
     {
         $config = (include __DIR__ . '/config.php')['db'];
-
+        
         try {
 
             $this->dbh = new \PDO(
