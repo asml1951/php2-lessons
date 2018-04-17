@@ -3,6 +3,7 @@
     <body>
 
      <div><h1>Все новости</h1></div>
+     <div> Всего новостей <?= count($this->articles); ?></div>
       <div><ul>
           <?php  foreach($this->articles as  $row){ ?>
           <li><div><h3><a href="/article/?id=<?php echo $row->id; ?>">
@@ -15,9 +16,8 @@
           </li>
       </ul>
       </div>
-      <div>Потребление ресурсов:<?=  '  ' . SebastianBergmann\Timer\Timer::resourceUsage(); ?>
-      </div>
-
+      <div>Потребление ресурсов:<?=  '  ' . SebastianBergmann\Timer\Timer::resourceUsage(); ?>      </div>
+      <?= $this->resources ; ?>
     </body>
 
 </html>

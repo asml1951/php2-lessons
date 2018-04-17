@@ -5,6 +5,6 @@ return [
         'host' => 'localhost',
         'dbname' => 'php2',
         'user' => 'rrr',
-        'password' => '1kalamera2001'
+        'password' => 'kalamera2001'
     ]
 ];
