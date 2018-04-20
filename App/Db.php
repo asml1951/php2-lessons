@@ -56,6 +56,18 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    public function queryEach($sql, $class , $data=[])
+    {
+
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute($data);
+        $sth->setFetchMode( \PDO::FETCH_CLASS, $class);
+
+        while($row = $sth->fetch()) {
+            yield $row;
+        }
+    }
+
     public function execute($sql, $params = [])
     {
         $sth = $this->dbh->prepare($sql);

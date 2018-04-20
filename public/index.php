@@ -1,6 +1,17 @@
 <?php
 
 include __DIR__ . '/../App/autoload.php';
+use App\Db;
+// Прверка метода QueryEach()
+ /* $db = new \App\Db();
+$sql =  'SELECT * FROM news';
+$class = 'App\Models\Article';
+$data = [];
+//$db->query($sql,$class,$data);
+foreach($db->queryEach($sql,$class,$data) as $article) {
+    var_dump($article);
+}  */
+
 
 
 $uri = $_SERVER['REQUEST_URI'];
@@ -21,7 +32,7 @@ try {
     die;
 }  catch(\App\NotFoundException $error) {
     echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
-}
+} 
 
 
 
