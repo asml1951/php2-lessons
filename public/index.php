@@ -2,6 +2,7 @@
 
 include __DIR__ . '/../App/autoload.php';
 use App\Db;
+use App\ConfigSingletone;
 // Прверка метода QueryEach()
  /* $db = new \App\Db();
 $sql =  'SELECT * FROM news';
@@ -13,6 +14,8 @@ foreach($db->queryEach($sql,$class,$data) as $article) {
 }  */
 
 
+var_dump(\App\ConfigSingletone::getConfig()::$data);
+var_dump(\App\ConfigSingletone::getConfig()::$data['dbname']);
 
 $uri = $_SERVER['REQUEST_URI'];
 $parts = explode('/',$uri);
@@ -32,7 +35,7 @@ try {
     die;
 }  catch(\App\NotFoundException $error) {
     echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
-} 
+}
 
 
 

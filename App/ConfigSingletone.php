@@ -4,7 +4,7 @@
 namespace App;
 
 
-class Config
+class ConfigSingletone
 {
     public  static $data ;
 
@@ -17,8 +17,9 @@ class Config
 
     public static function getConfig()
     {
-        if (empty(self::$instance)) {
-            self::$data = (include __DIR__ . '/../config.php')['db'];
+        if (empty(self::$instance))
+        {
+            self::$data = (include __DIR__ . '/config.php')['db'];
             self::$instance = new self;
         }
         return self::$instance;
