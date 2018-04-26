@@ -42,28 +42,29 @@ class Article extends Model
 
     public function fill (Array $data)
 {
-    var_dump($data);
-    $this->title = $data[0];
-    $this->author_id = $data[1];
-    $this->content = $data[2];
+    
+    
 
     $errors = new Errors();
 
-    if(empty($this->title)){
+    if(empty($data[0])){
         $errors->add(new \Exception('Заголовок статьи не должен быть пустым!'));
     }
-    if(!is_numeric($this->author_id)) {
+    if(!is_numeric($data[1])) {
         $errors->add(new \Exception('Id автора должно быть целым числом!'));
     }
-    if(strlen($this->content) < 5) {
-        $errors->add(new \Exception('GGGGGДлина сообщения не менее 5 символов!'));
+    if(strlen($data[2]) < 5) {
+        $errors->add(new \Exception('Длина сообщения не менее 5 символов!'));
     }
 
 
     if (!$errors->empty()) {
         throw $errors;
-
-
+    } else {
+        $this->title = $data[0];
+        $this->author_id = $data[1];
+        $this->content = $data[2];
+    
     }
 
 
