@@ -23,11 +23,8 @@ class Article extends Model
             static::class,
             []
         );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
+       // return false;
+        return $res ;
 
     }
 
