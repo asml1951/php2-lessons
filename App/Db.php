@@ -4,7 +4,6 @@ namespace App;
 
 class Db
 {
-
     protected $dbh;
 
     public function __construct()
@@ -25,12 +24,7 @@ class Db
             $opt
         );
     }
-/*
- PHP Manual:
- Обратите внимание, что все аргументы, для которых установлены значения по умолчанию,
- должны находиться правее аргументов, для которых значения по умолчанию не заданы,
- в противном случае ваш код может работать не так, как вы этого ожидаете.
- */
+
     public function query($sql, $class, $data=[] )
     {
         $sth = $this->dbh->prepare($sql);
@@ -40,10 +34,9 @@ class Db
 
     public function execute($sql, $params = [])
     {
-        var_dump($sql);
         $stmt = $this->dbh->prepare($sql);
-        $result = $stmt->execute($params);
-        return $result;
+        return $stmt->execute($params);
+
 
     }
 

@@ -4,7 +4,6 @@ namespace App;
 
 abstract class Model
 {
-
     public const TABLE = '';
 
     public $id;
@@ -16,44 +15,23 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
     }
 
     public static function findById($id)
     {
-
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=' . $id;
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
 
         $res = $db->query(
             $sql,
             static::class,
-            []
+            [':id' => $id]
         );
-        if (!empty($res)) {
-            return $res[0]; //Исправлено. $res стал объектом.
-        } else {
-            return false;
-        }
+        return $res ? $res[0] : null;
     }
-        public static function getLatestNews()
-    {
-        $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT 3';
 
-        $res = $db->query(
-            $sql,
-            static::class,
-            []
-        );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
-
-    }
 }
 
