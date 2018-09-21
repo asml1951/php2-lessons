@@ -6,4 +6,4 @@ $id = $_GET['id'];
 
 $article = \App\Models\Article::findById($id);
 
-require_once ('App/Templates/article.tmpl');
+require_once('App/Templates/article.tmpl.php');

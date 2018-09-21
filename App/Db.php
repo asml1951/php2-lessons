@@ -4,19 +4,19 @@ namespace App;
 
 class Db
 {
-
     protected $dbh;
 
     public function __construct()
     {
-        $config = (include __DIR__ . '/../config.php')['db'];
-
+    //    $config = (include __DIR__ . '/../config.php')['db'];
+        $config = \App\Config::getConfig();
 
 
         $this->dbh = new \PDO(
-            'mysql:host='.$config['host'] . ';dbname=' .$config['dbname'],
-            $config['user'],
-            $config['password'],
+            'mysql:host=' . $config::$data['db']['host'] .
+            ';dbname=' . $config::$data['db']['dbname'],
+            $config::$data['db']['user'],
+            $config::$data['db']['password'],
             [
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
             ]

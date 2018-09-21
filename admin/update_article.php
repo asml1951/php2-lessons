@@ -2,18 +2,20 @@
 
 require __DIR__ . '/../autoload.php';
 
-if (!empty($_REQUEST)) {
-    include  __DIR__ . '/../App/Templates/update_article.tmpl';
+if (empty($_REQUEST['update'])) {
+    $article = \App\Models\Article::findById($_GET['id']);
+    include  __DIR__ . '/../App/Templates/update_article.tmpl.php';
 } else {
 
+    $article = \App\Models\Article::findById($_GET['id']);
+    $article->title = $_REQUEST['title'];
+    $article->content = $_REQUEST['content'];
 
-    $data = \App\Models\Article::findById($_GET['id']);
-    var_dump($data);
-    $article = $data[0];
-    $article->title = 'New title';
-    $article->content = 'New content';
-//var_dump($article);
+   if(true == $article->save()){
+       require __DIR__ . '/../App/Templates/article_updated.tmpl.php';
+   } else {
+       require __DIR__ . '/../App/Templates/failed.tmpl.php';
+   }
 
-    $article->update();
-    echo '<h2>Новость обновлена!</h2>';
+
 }

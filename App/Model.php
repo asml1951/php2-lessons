@@ -16,46 +16,52 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $db->query(
             $sql,
-            [],
-            static::class
+            static::class,
+            []
         );
     }
-/* Не понимаю зачем нужен  метод isNew. В таблице news поле id autoincrement.
-Если я создаю новую статью новостей его значение присваивается автоматически.
-Если я хочу отредактировать статью, ее id мне известен( на админ панели имеется кнопка-ссылка "редактировать",
-id содержится в этой ссылке). Нажимая на эту кнопку, я попадаю на страницу редактирования новости.
-*/
+
     public function isNew()
 	 {
-	 	return empty($this->id);
+	 	return !isset($this->id);
 	 }
 
     public static function findById($id)
     {
 
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=' . $id;
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
         
         $res = $db->query(
             $sql,
             static::class,
-            [],
+            [':id' => $id]
         );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
+        return $res ? $res[0] : null;
     }
 
-    public static function deleteById($id)
+    public static function deleteById($id) : bool
     {
         $db = new Db();
-        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=' . $id;
-        $res = $db->execute($sql,[]);
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=:id';
+        return $db->execute($sql,[':id' => $id]);
     }
 
-    public function insert()
+    public function save()
+    {
+        if ($this->isNew()) {
+
+           return  $this->insert();
+
+        } else {
+
+           return $this->update();
+
+        }
+
+    }
+
+    public function insert() : bool
     {
         $fields = get_object_vars($this);
 
@@ -75,9 +81,10 @@ id содержится в этой ссылке). Нажимая на эту к
         $db = new Db();
         $res = $db->execute($sql,$data);
         $this->id = $db->getLastId();
+        return $res;
     }
 
-    function update()
+    function update() : bool
     {
         $fields = get_object_vars($this);
 
@@ -99,29 +106,7 @@ id содержится в этой ссылке). Нажимая на эту к
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . $sql . ' WHERE id= ' . $this->id;
         echo $sql;
         $db = new Db();
-        $res = $db->execute($sql,$data);
-
-    }
-
-
-
-
-
-        public static function getLatestNews()
-    {
-        $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT 3';
-
-        $res = $db->query(
-            $sql,
-            static::class,
-            []
-        );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
+        return $db->execute($sql,$data);
 
     }
 }

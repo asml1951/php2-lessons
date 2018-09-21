@@ -2,7 +2,6 @@
 use App\Db;
 
 require __DIR__ . '/../autoload.php';
-
 if(!empty($_REQUEST)) {
 
     $article = new \App\Models\Article();
@@ -10,11 +9,11 @@ if(!empty($_REQUEST)) {
     $article->title = $_GET['title'];
     $article->content = $_GET['content'];
 
-    $article->insert();
-    echo '<h3>Новость создана!</h3>';
-
+    if (true == $article->save()) {
+        require __DIR__ . '/../App/Templates/article_added.tmpl.php';
+    } else {
+        require __DIR__ . '/../App/Templates/fail.tmpl.php';
+    }
 } else {
-
-
-    include __DIR__ . '/../App/Templates/add_new_article.tmpl';
-}
+    require __DIR__ . '/../App/Templates/add_new_article.tmpl.php';
+    }
