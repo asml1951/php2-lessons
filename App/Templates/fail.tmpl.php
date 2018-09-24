@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Новсть удалена</title>
+    <title>Ошибка!</title>
 </head>
 <body>
 
