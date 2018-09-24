@@ -34,8 +34,8 @@ class Db
     public function execute($sql, $params = [])
     {
         $sth = $this->dbh->prepare($sql);
-        $result = $sth->execute($params);
-        return $result;
+        return $sth->execute($params);
+
 
     }
 

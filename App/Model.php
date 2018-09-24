@@ -104,7 +104,6 @@ abstract class Model
         $sql = rtrim($sql,',');
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . $sql . ' WHERE id= ' . $this->id;
-        echo $sql;
         $db = new Db();
         return $db->execute($sql,$data);
 

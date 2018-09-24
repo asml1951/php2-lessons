@@ -24,6 +24,7 @@ class Article extends Model
             static::class,
             []
         );
+
         return $res;
 
     }
