@@ -25,6 +25,8 @@ class Article extends Model
     /** @var string */
     public $content;
 
+    public $author_id;
+
     /**
      * Этот метод  возвращает все статьи новостей
      * @return array
@@ -39,26 +41,47 @@ class Article extends Model
             static::class,
             []
         );
-        /**
-         * Определяет имя и фамилию автора по его $id
-         "var Article $article
-         */
+
         foreach ($res as $article) {
 
             $au_id = $article->author_id;
 
             if (isset($au_id)) {
-                $author = Author::findById($au_id);
-
-
-                $article->author_id = $author[0]->first_name . ' ' . $author[0]->last_name;
+                $article->author = Author::findById($au_id);
             }
-
-
-
-
         }
+        return $res;
+    }
 
+    public static function findById($id)
+    {
+
+        $db = new Db();
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
+
+        $res = $db->query(
+            $sql,
+            static::class,
+            [':id' => $id]
+        );
+
+        $article = $res ? $res[0] : null;
+        $au_id = $article->author_id;
+        if (isset($au_id)) {
+            $article->author = Author::findById($au_id);
+        }
+        return $article;
+    }
+
+    public static function getLatestNews()
+    {
+        $db = new Db();
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT 3';
+        $res = $db->query(
+            $sql,
+            static::class,
+            []
+        );
         return $res;
     }
     }

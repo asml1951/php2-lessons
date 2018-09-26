@@ -1,16 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: smolin
- * Date: 05.04.2018
- * Time: 13:03
- */
 
-namespace App\Models;
+namespace App;
 
 
 trait GetSetMagic
 {
+    protected $data = [];
+
     public function __get($name)
     {
         return $this->data[$name] ?? null;

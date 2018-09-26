@@ -4,11 +4,12 @@
  */
 
 
-namespace App\Models;
+namespace App;
+
 
 /**
  * Class View
- * @package App\Models
+ * @package App
  *
  * @property array $articles
  */
@@ -20,7 +21,7 @@ class View implements \Countable, \ArrayAccess
     /**
      * @var array сохраняет данные
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * @param $template  шаблон
@@ -31,22 +32,7 @@ class View implements \Countable, \ArrayAccess
         echo $this->render($template);
     }
 
-  /*  public function __get($name)
-    {
-        return $this->data[$name] ?? null;
 
-    }
-
-    public function __set($name,$value)
-    {
-        $this->data[$name]  = $value;
-    }
-
-    public function __isset($name)
-    {
-        return isset($this->data[$name]);
-    }
-  */
     /**
      * Сохраняет выходные данные в буфере
      * @param $template
@@ -54,6 +40,7 @@ class View implements \Countable, \ArrayAccess
      */
     public function render($template)
     {
+
         ob_start();
         include $template;
         $content = ob_get_contents();

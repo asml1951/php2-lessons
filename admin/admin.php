@@ -2,8 +2,9 @@
 
 require __DIR__ . '/../autoload.php';
 
+$view = new \App\View();
 
-$articles = (\App\Models\Article::findAll());
+$view->articles = \App\Models\Article::findAll();
+$view->authors = \App\Models\Author::findAll();
 
-
-include __DIR__ . '/../App/Templates/admin_panel_1.tmpl';
+$view->display(__DIR__ . '/../App/Templates/admin_panel.tmpl.php');

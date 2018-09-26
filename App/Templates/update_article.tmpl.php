@@ -16,14 +16,16 @@
     <form action="../../admin/update_article.php">
         <div class="form-group">
             <label for="formGroupExampleInput">Заголовок новости</label>
-            <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="Введите заголовок">
+            <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="<?= $article->title ?>" >
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Содержание новости</label>
-            <textarea name="content" type="text" rows="6" class="form-control" id="formGroupExampleInput2" placeholder="Введите текст"></textarea>
+            <textarea name="content" type="text" rows="6" class="form-control" id="formGroupExampleInput2"  ><?= $article->content ?> </textarea>
             <button type="submit" class="btn btn-primary">Обновить</button>
 
         </div>
+        <input type="hidden"  name="update" value="1">
+        <input type="hidden"  name="id" value="<?= $article->id ?>">
     </form>
 
 

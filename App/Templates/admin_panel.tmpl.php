@@ -19,11 +19,9 @@
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Новости</a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Пользователи</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Авторы</a>
+            <a class="nav-link" id="author-tab" data-toggle="tab" href="#author" role="tab" aria-controls="author" aria-selected="false">Авторы</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -40,21 +38,24 @@
                     <th scope="col">id</th>
                     <th scope="col">Заголовок</th>
                     <th scope="col">Содержание</th>
+                    <th scope="col">Автор</th>
                     <th scope="col">Редактировать</th>
                     <th scope="col">Удалить</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($articles as $article)
+                <?php foreach ($this->articles as $article)
 		  { ?>
                 <tr>
                     <th scope="row"> <?php echo $article->id; ?></th>
-                    <td><?php echo $article->title; ?></td>
-                    <td><?php echo $article->content; ?></td>
+                    <td><?= $article->title; ?></td>
+                    <td><?= $article->content; ?></td>
+                    <td><?= $article->author->first_name . ' '
+                            . $article->author->last_name; ?></td>
                     <?php $href_update = '"' . 'update_article.php?id=' . $article->id . '"' ?>
                     <?php $href_delete = '"' . 'delete_article.php?id=' . $article->id . '"' ?>
-                    <td><a href = <?php echo $href_update ?><span class="oi oi-pencil"></span></a></td>
-                    <td><a href = <?php echo $href_delete ?><span class="oi oi-trash" title="icon trash" aria-hidden="true"></a></td>
+                    <td><a href = <?= $href_update ?><span class="oi oi-pencil"></span></a></td>
+                    <td><a href = <?= $href_delete ?><span class="oi oi-trash" title="icon trash" aria-hidden="true"></a></td>
                 </tr>
                 <?php } ?>
 
@@ -64,16 +65,42 @@
         </div>
 
 
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;>
-		    <a href = "add_new_user.php"><button type="button" class="btn btn-primary">Добавить нового пользователя</button></a>
-        </div>
 
+
+
+        <div class="tab-pane fade" id="author" role="tabpanel" aria-labelledby="author-tab">
+            <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;">
+		    <a href = "add_new_author.php">
+                 <button type="button" class="btn btn-primary">
+                     Добавить нового автора</button>
+            </a>
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;>
-		    <a href = "add_new_contact.php"><button type="button" class="btn btn-primary">Добавить нового автора</button></a>
-        </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->authors as $author)
+                { ?>
+                    <tr>
+                        <th scope="row"> <?php echo $author->id; ?></th>
+                        <td><?= $author->first_name; ?></td>
+                        <td><?= $author->last_name; ?></td>
+
+                        <?php $href_update = '"' . 'update_author.php?id=' . $author->id . '"' ?>
+                        <?php $href_delete = '"' . 'delete_author.php?id=' . $author->id . '"' ?>
+                        <td><a href = <?= $href_update ?><span class="oi oi-pencil"></span></a></td>
+                        <td><a href = <?= $href_delete ?><span class="oi oi-trash" title="icon trash" aria-hidden="true"></a></td>
+                    </tr>
+                <?php } ?>
+
+                </tbody>
+            </table>
         </div>
     </div>
 

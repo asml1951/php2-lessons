@@ -17,14 +17,25 @@
     <form action="add_new_article.php" >
 
         <div class="form-group">
-            <label for="exampleFormControlInput1">Заголовок новости</label>
-            <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Введите заголовок новости">
+            <label for="Input1">Заголовок новости</label>
+            <input type="text" name="title" class="form-control" id="Input1" placeholder="Введите заголовок новости">
         </div>
 
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Содержание новости</label>
             <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="Введите текст новости"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="Input2">Автор новости</label>
+            <select size="1" name="author_id" class="form-control"  placeholder="Выберите фамилию автора новости">
+                <option >Выберите автора</option>
+                <? foreach ($this->authors as $author){ ?>
+                <option value= <?= $author->id  ;?> ><?= $author->last_name;} ?>
+                    </option>
+
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary mb-2">Добавить новость</button>

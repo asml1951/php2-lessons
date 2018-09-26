@@ -4,7 +4,6 @@ namespace App;
 
 abstract class Model
 {
-
     public const TABLE = '';
 
     public $id;
@@ -21,33 +20,43 @@ abstract class Model
         );
     }
 
+    public function isNew()
+    {
+        return !isset($this->id);
+    }
+
+
     public static function findById($id)
     {
 
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id' ;
-        
+        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
+
         $res = $db->query(
             $sql,
             static::class,
-            [':id'=> $id]
+            [':id' => $id]
         );
+        return $res ? $res[0] : null;
+    }
 
-        if (!empty($res)) {
-            return $res;
+    public static function deleteById($id): bool
+    {
+        $db = new Db();
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=:id';
+        return $db->execute($sql,[':id' => $id]);
+    }
+
+    public function save()
+    {
+        if ($this->isNew()) {
+            return  $this->insert();
         } else {
-            return false;
+            return $this->update();
         }
     }
 
-    public static function deleteById($id)
-    {
-        $db = new Db();
-        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id=' . $id;
-        $res = $db->execute($sql,[]);
-    }
-
-    public function insert()
+    public function insert() : bool
     {
         $fields = get_object_vars($this);
 
@@ -55,7 +64,7 @@ abstract class Model
         $data = [];
 
         foreach ($fields as $name => $value) {
-            if ('id' == $name) {
+            if ('id' == $name ) {
                 continue;
             }
             $cols[] = $name;
@@ -67,9 +76,10 @@ abstract class Model
         $db = new Db();
         $res = $db->execute($sql,$data);
         $this->id = $db->getLastId();
+        return $res;
     }
 
-    function update()
+    function update() : bool
     {
         $fields = get_object_vars($this);
 
@@ -89,31 +99,9 @@ abstract class Model
         $sql = rtrim($sql,',');
 
         $sql = 'UPDATE ' . static::TABLE . ' SET ' . $sql . ' WHERE id= ' . $this->id;
-        echo $sql;
+
         $db = new Db();
-        $res = $db->execute($sql,$data);
-
-    }
-
-
-
-
-
-        public static function getLatestNews()
-    {
-        $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT 3';
-
-        $res = $db->query(
-            $sql,
-            [],
-            static::class
-        );
-        if (!empty($res)) {
-            return $res;
-        } else {
-            return false;
-        }
+        return $db->execute($sql,$data);
 
     }
 }
