@@ -13,15 +13,11 @@ namespace App;
  *
  * @property array $articles
  */
-class View implements \Countable, \ArrayAccess
+class View implements \Countable , \Iterator
 {
 
     use GetSetMagic;
 
-    /**
-     * @var array сохраняет данные
-     */
-    protected $data = [];
 
     /**
      * @param $template  шаблон
@@ -54,25 +50,28 @@ class View implements \Countable, \ArrayAccess
         return count($this->data);
     }
 
-    public function offsetExists($offset)
+    public function current()
     {
-        return isset($this->data[$offset]);
+        return current($this->data);
+    }
+    public function next()
+    {
+        next($this->data);
+    }
+    public function key()
+    {
+        return key($this->data);
+    }
+    public function valid()
+    {
+        return null !== key($this->data);
+    }
+    public function rewind()
+    {
+        reset($this->data);
     }
 
-    public function offsetGet($offset)
-    {
-        return $this->data[$offset] ?? null;
-    }
 
-    public function offsetSet($offset, $value)
-    {
-        $this->data[$offset] = $value;
-    }
-
-    public function offsetUnset($offset)
-    {
-        unset($this->data[$offset]);
-    }
 
     }
 
