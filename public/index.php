@@ -18,12 +18,17 @@ try {
 
 
 } catch (\App\DbException  $error) {
-    echo '<h3>Проблема с подключением к базе данных : ' .$error->getMessage() . '</h3>';
+    $log = \App\Logger::getInstance();
+    $log->addMessage($error->getMessage(),$error->getFile(),$error->getLine());
+    include __DIR__ . '/../App/Templates/errors.tmpl.php';
+
 }  catch (\PDOException $error) {
-    echo 'Ошибка выполнения запроса : ' . $error->getMessage();
-    die;
+    $log = \App\Logger::getInstance();
+    $log->addMessage($error->getMessage(),$error->getFile(),$error->getLine());
+    include __DIR__ . '/../App/Templates/pdo_exception_error.tmpl.php';
+
 }  catch(\App\NotFoundException $error) {
-    echo 'Попытка найти несуществующий объект. ' . $error->getMessage();
+    include __DIR__ . '/../App/Templates/errors.tmpl.php';
 }
 
 

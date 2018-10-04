@@ -21,7 +21,7 @@ class Admin extends Controller
 
         $this->view->articles = Article::findAll() ;
 
-        $this->view->display(__DIR__ . '/../../App/Templates/admin_panel_1.tmpl');
+        $this->view->display(__DIR__ . '/../../App/Templates/admin_panel.tmpl.php');
 
     }
 

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Db;
-use App\Errors;
+use App\MultiException;
 use App\Model;
 
 class Article extends Model
@@ -40,35 +40,34 @@ class Article extends Model
         return $res;
     }
 
-    public function fill (Array $data)
-{
-    
-    
-
-    $errors = new Errors();
-
-    if(empty($data[0])){
-        $errors->add(new \Exception('Заголовок статьи не должен быть пустым!'));
-    }
-    if(!is_numeric($data[1])) {
-        $errors->add(new \Exception('Id автора должно быть целым числом!'));
-    }
-    if(strlen($data[2]) < 5) {
-        $errors->add(new \Exception('Длина сообщения не менее 5 символов!'));
+    protected function validateTitle($title)
+    {
+        if(strlen($title <= 3)) {
+            return ['valid' =>false,'msg' =>'Длина заголовка меньше 3 символов!'
+            ];
+        }
+        return true;
     }
 
+    protected function validateContent($content)
+    {
+        if(strlen($content) <= 10) {
+            return ['valid' =>false,'msg' => 'Длина контента меньше 10 символов! '];
+        }
+        return true;
+    }
 
-    if (!$errors->empty()) {
-        throw $errors;
-    } else {
-        $this->title = $data[0];
-        $this->author_id = $data[1];
-        $this->content = $data[2];
-    
+    protected function validateAuthor_id($author_id)
+    {
+
+        if(empty($author_id)) {
+            return ['valid' => false,'msg' =>'Нет id  автора! '];
+        }
+        return true;
     }
 
 
 
 }
-}
+
 
