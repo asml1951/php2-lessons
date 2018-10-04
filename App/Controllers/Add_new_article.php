@@ -9,27 +9,31 @@
 namespace App\Controllers;
 use App\Controller;
 use App\Db;
-
-
+use App\MultiException;
 
 
 class Add_new_article extends Controller
 {
     public function handle()  //makes object callable
     {
-        if(!empty($_REQUEST)) {
+        if(!empty($_GET)) {
 
             $article = new \App\Models\Article();
+            try {
+                $article->fill($_GET);
+            } catch (MultiException $er) {
 
-            $article->title = $_GET['title'];
-            $article->content = $_GET['content'];
-            $article->author_id = $_GET['author_id'];
-            $article->insert();
+                $this->view->errors = $er->all();
+                $this->view->display(__DIR__ . '/../Templates/add_new_article.tmpl.php');
+             die;
+            }
+
+            $article->save();
             $this->view->display( __DIR__ . '/../Templates/article_created.tmpl');
 
         } else {
 
-            $this->view->display(__DIR__ . '/../Templates/add_new_article.tmpl');
+            $this->view->display(__DIR__ . '/../Templates/add_new_article.tmpl.php');
         }
 
 

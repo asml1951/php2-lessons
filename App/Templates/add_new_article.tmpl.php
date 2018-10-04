@@ -18,19 +18,30 @@
 
         <div class="form-group">
             <label for="exampleFormControlInput1">Заголовок новости</label>
-            <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Введите заголовок новости">
+            <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Введите заголовок новости" value=" <?= $_GET['title'] ?>"></input>
+            <?php
+            if(!is_null($this->errors['title'])){
+            echo $this->errors['title']->getMessage();}
+            ?>
         </div>
 
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Содержание новости</label>
-            <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="Введите текст новости"></textarea>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="5" placeholder="Введите текст новости" ><?= $_GET['content'] ?></textarea>
+            <?php
+            if(!is_null($this->errors['content'])){
+            echo $this->errors['content']->getMessage();}?>
         </div>
 
         <div class="form-group">
             <label for="exampleFormControlTextarea1">ID автора</label>
-            <input type="text" class="form-control" name="author_id" id="exampleFormControlTextarea1"  placeholder="Введите ID автора"></input>
+            <input type="text" class="form-control" name="author_id" id="exampleFormControlTextarea1"  placeholder="Введите ID автора"
+             value="<?= $_GET['author_id'] ?>"></input>
         </div>
+        <div><?php
+            if(!is_null($this->errors['author_id'])){
+            echo $this->errors['author_id']->getMessage();}?></div>
 
         <button type="submit" class="btn btn-primary mb-2">Добавить новость</button>
 

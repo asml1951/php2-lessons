@@ -18,8 +18,6 @@ class Index extends Controller
 {
     protected function handle()
     {
-
-
         $this->view->articles = Article::findAll() ;
         $this->view->resources =$this->getResources();
 
