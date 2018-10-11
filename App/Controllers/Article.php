@@ -8,14 +8,19 @@
 
 namespace App\Controllers;
 use App\Controller;
+use App\NotFoundException;
+
 
 class Article extends Controller
 {
     public function handle()  //makes object callable
     {
-       $this->view->article = \App\Models\Article::findById($_GET['id']);
-
-        $this->view->display(__DIR__ . '/../../App/Templates/article.tmpl');
+       $article =  \App\Models\Article::findById($_GET['id']);
+       if (is_null($article)) {
+           throw new NotFoundException( 'Новость № ' .$_GET['id'] . ' не найдена!');
+       }
+       $this->view->article = $article;
+       $this->view->display(__DIR__ . '/../../App/Templates/article.tmpl');
     }
 
 }

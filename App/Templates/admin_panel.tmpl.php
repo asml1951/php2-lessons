@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="/../App/fonts/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link href="/fonts/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
     <title>Админ панель</title>
 </head>
 <body>
@@ -30,7 +30,7 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
             <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;">
-		    <a href="/../add_new_" ><button type="button" class="btn btn-primary">Добавить свежую новость</button>
+		    <a href="/../add_new_article" ><button type="button" class="btn btn-primary">Добавить свежую новость</button>
             </a>
         </div>
 
@@ -51,10 +51,10 @@
                     <th scope="row"> <?php echo $article->id; ?></th>
                     <td><?php echo $article->title; ?></td>
                     <td><?php echo $article->content; ?></td>
-                    <?php $href_update = '"' . '.update_article/?id=' . $article->id . '"' ?>
+                    <?php $href_update = '"' . '/update_article/?id=' . $article->id . '"' ?>
                     <?php $href_delete = '"' . '/delete_article/?id=' . $article->id . '"' ?>
-                    <td><a href = <?php echo $href_update ?><span class="oi oi-pencil"></span></a></td>
-                    <td><a href = <?php echo $href_delete ?><span class="oi oi-trash" title="icon trash" aria-hidden="true"></a></td>
+                    <td><a href = <?php echo $href_update ?>><span class="oi oi-pencil"></span></a></td>
+                    <td><a href = <?php echo $href_delete ?>><span class="oi oi-trash" title="icon trash" aria-hidden="true"></a></td>
                 </tr>
                 <?php } ?>
 

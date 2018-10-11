@@ -22,29 +22,56 @@ abstract class Model
         );
     }
 
+    public function isNew()
+    {
+        return !isset($this->id);
+    }
+
+    public function save()
+    {
+        if ($this->isNew()) {
+            return  $this->insert();
+        } else {
+            return $this->update();
+        }
+    }
+
+    public function fill (Array $data)
+    {
+       $errors = new MultiException();
+       foreach ($data as $key => $value) {
+           $validator = 'validate' . ucfirst($key);
+           if (method_exists($this,$validator)) {
+               $result = $this->$validator($value);
+               if (false === $result['valid']){
+                   $errors->add(new \Exception($result['msg']), $key);
+                   continue;
+               } else {
+                   $this->$key = $value;
+               }
+           }
+       }
+
+       if(!$errors->isEmpty()) {
+           throw $errors;
+       }
+       return true;
+
+
+    }
+
     public static function findById($id)
     {
 
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
-
-
         $result = $db->query(
             $sql,
             static::class,
             [':id' => $id]
         );
-        if (!$result) {
-            throw new \App\NotFoundException(
-                'Ошибка 404 : Объект с id = ' . $id . ' не найден');
-            die;
-
-        }
-
         return $result ? $result[0] : null;
     }
-
-
 
     public static function deleteById($id)
     {
@@ -56,7 +83,6 @@ abstract class Model
     public function insert()
     {
         $fields = get_object_vars($this);
-
         $cols = [];
         $data = [];
 
@@ -78,7 +104,6 @@ abstract class Model
     function update()
     {
         $fields = get_object_vars($this);
-
         $cols = [];
         $data = [];
         $sql = '';
@@ -101,11 +126,7 @@ abstract class Model
 
     }
 
-
-
-
-
-        public static function getLatestNews()
+    public static function getLatestNews()
     {
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT 3';
