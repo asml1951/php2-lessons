@@ -55,6 +55,8 @@ class View implements \Countable, \ArrayAccess
 
     }
 
+
+
     public function count()
     {
         return count($this->data);

@@ -16,5 +16,5 @@ if(!empty($_REQUEST)) {
 } else {
 
 
-    include __DIR__ . '/../App/Templates/add_new_article.tmpl';
+    include __DIR__ . '/../App/Templates/add_new_article.tmpl.php';
 }
