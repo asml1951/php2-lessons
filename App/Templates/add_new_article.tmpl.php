@@ -32,7 +32,7 @@
     </form>
 
     <div  style="width: 18rem; margin-top:5rem; margin-bottom:5rem;">
-		    <a href="../../admin/admin.php" ><button type="button" class="btn btn-primary">Вернуться на админ панель</button></a>
+		    <a href="../../admin/index.php" ><button type="button" class="btn btn-primary">Вернуться на админ панель</button></a>
     </div>
 </div>
 

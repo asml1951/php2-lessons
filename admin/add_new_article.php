@@ -2,7 +2,8 @@
 use App\Db;
 
 require __DIR__ . '/../autoload.php';
-if(!empty($_REQUEST)) {
+
+if(!empty($_GET['title']) && !empty($_GET['content'])) {
 
     $article = new \App\Models\Article();
 
