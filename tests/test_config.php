@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+//namespace App;
 /**
  * Class Config
  * реализует п.1 и п.4 ДЗ2:
@@ -19,6 +19,7 @@ class Config
 
     private function __construct()
     {
+        echo 'Create new object ';
         self::$data = include __DIR__ . '/../config.php';
     }
 
@@ -27,11 +28,18 @@ class Config
         if (empty(self::$instance)) {
 
             self::$instance = new self();
-//          self::$data = include __DIR__ . '/../config.php';    Пустой конструктор? Явная ошибка.
+
+        } else {
+            echo 'One object is already created!';
         }
         return self::$instance;
     }
-
-
-
 }
+
+$config = Config::getConfig();  // вывод:  Create new object
+var_dump($config);              //         object(Config)[1]
+unset($config);
+$config2 = Config::getConfig();  //        One object is already created!
+
+var_dump( $config2::$data['db']['host']);  //     string 'localhost' (length=9)
+
