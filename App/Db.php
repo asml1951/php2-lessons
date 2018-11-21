@@ -9,14 +9,12 @@ class Db
     public function __construct()
     {
     //    $config = (include __DIR__ . '/../config.php')['db'];
-        $config = \App\Config::getConfig();
-
-
+        $config = \App\Config::getInstance();
         $this->dbh = new \PDO(
-            'mysql:host=' . $config::$data['db']['host'] .
-            ';dbname=' . $config::$data['db']['dbname'],
-            $config::$data['db']['user'],
-            $config::$data['db']['password'],
+            'mysql:host=' . $config->data['db']['host'] .
+            ';dbname=' . $config->data['db']['dbname'],
+            $config->data['db']['user'],
+            $config->data['db']['password'],
             [
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
             ]

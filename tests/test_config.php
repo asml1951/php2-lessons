@@ -11,7 +11,7 @@ echo $config->data['db']['host'];
  * * Изучите что такое синглтон (слайды + консультация в чате поддержки) и сделайте класс App\Config синглтоном. "
  */
 
-class Config
+/*class Config
 {
     public static $data;
 
@@ -41,5 +41,18 @@ var_dump($config);              //         object(Config)[1]
 unset($config);
 $config2 = Config::getConfig();  //        One object is already created!
 
-var_dump( $config2::$data['db']['host']);  //     string 'localhost' (length=9)
+var_dump( $config2::$data['db']['host']);  //     string 'localhost' (length=9) */
+class Config1
+{
+    public $data;
+
+    public function __construct()
+    {
+        $this->data = include __DIR__ . '/../config.php';
+    }
+
+}
+
+$config1 = new Config1();
+var_dump($config1);
 

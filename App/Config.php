@@ -13,21 +13,21 @@ echo $config->data['db']['host'];
 
 class Config
 {
-    public static $data;
+    public  $data;
 
     private static $instance;
 
     private function __construct()
     {
-        self::$data = include __DIR__ . '/../config.php';
+        $this->data = include __DIR__ . '/../config.php';
     }
 
-    public static function getConfig()
+    public static function getInstance()
     {
         if (empty(self::$instance)) {
 
             self::$instance = new self();
-//          self::$data = include __DIR__ . '/../config.php';    Пустой конструктор? Явная ошибка.
+
         }
         return self::$instance;
     }
