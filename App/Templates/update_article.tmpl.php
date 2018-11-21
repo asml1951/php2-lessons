@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 
-    <form action="../../admin/update_article.php">
+    <form action="../admin/update_article.php">
         <div class="form-group">
             <label for="formGroupExampleInput">Заголовок новости</label>
             <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="<?= $article->title ?>" >

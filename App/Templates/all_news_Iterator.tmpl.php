@@ -10,7 +10,7 @@
 <ul>
     <?php  foreach($this as   $article){ ?>
 
-    <li><div><h3><a href="/article.php?id=<?= $article->id; ?>"><?= 'Новость №' . $article->id  . ' ' . 'Автор: ' . $article->author->first_name . ' '
+    <li><div><h3><a href="/App/article.php?id=<?= $article->id; ?>"><?= 'Новость №' . $article->id  . ' ' . 'Автор: ' . $article->author->first_name . ' '
                     . $article->author->last_name ?></a></h3>
                    <h3> <?= 'Заголовок: ' . $article->title ; ?></h3>
         <div><?php echo $article->content; ?></div>

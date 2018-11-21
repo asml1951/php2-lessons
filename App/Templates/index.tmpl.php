@@ -12,7 +12,7 @@
      <div><h3>Всего новостей <?php echo count($this->articles) ;?></h3></div>
       <ul>
           <?php  foreach($this->articles as  $article){ ?>
-          <li><div><h3><a href="/article.php?id=<?php echo $article->id; ?>"><?php echo 'Новость №' . $article->id
+          <li><div><h3><a href="/App/article.php?id=<?php echo $article->id; ?>"><?php echo 'Новость №' . $article->id
               . ' ' . 'Автор: ' . $article->author->first_name . ' '
                                 . $article->author->last_name . '<br>'
               . 'Заголовок: ' . $article->title; ?></a></h3></div>

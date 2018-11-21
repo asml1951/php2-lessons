@@ -6,20 +6,16 @@ namespace App;
 
 class Config
 {
-    public  static $data ;
-
+    public  $data;
     private static $instance;
-
     private function __construct()
     {
-
+        $this->data = include __DIR__ . '/../config.php';
     }
-
-    public static function getConfig()
+    public static function getInstance()
     {
         if (empty(self::$instance)) {
-            self::$data = (include __DIR__ . '/../config.php')['db'];
-            self::$instance = new self;
+            self::$instance = new self();
         }
         return self::$instance;
     }

@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\GetSetMagic;
+
+
 abstract class Model
 {
     public const TABLE = '';
