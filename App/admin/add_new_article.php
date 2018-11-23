@@ -1,7 +1,7 @@
 <?php
 use App\Db;
 
-require __DIR__ . '/../App/autoload.php';
+require __DIR__ . '/../autoload.php';
 
 if(!empty($_REQUEST)) {
 
@@ -16,5 +16,5 @@ if(!empty($_REQUEST)) {
 } else {
 
 
-    include __DIR__ . '/../App/Templates/add_new_article.tmpl.php';
+    include __DIR__ . '/../Templates/add_new_article.tmpl.php';
 }
