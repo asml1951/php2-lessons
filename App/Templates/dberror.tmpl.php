@@ -8,7 +8,7 @@
     <title>Ошибка PDO</title>
 </head>
 <body>
-<h1><?=  $error->getMessage(); ?></h1>
+<h1><?=  $this->error->getMessage(); ?></h1>
 
 </body>
 </html>

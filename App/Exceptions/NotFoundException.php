@@ -6,7 +6,7 @@
  * Time: 14:37
  */
 
-namespace App;
+namespace App\Exceptions;
 
 
 class NotFoundException extends \Exception

@@ -8,9 +8,10 @@
     <title>DB Error</title>
 </head>
 <body>
-<h1> <?=  $this->error->getMessage() . '<br>'
-    . ' Файл: ' . $this->error->getFile()  . '<br>'
-    . ' Cтрока: '. $this->error->getLine() ; ?>
+<h1> <?=  'Ошибка при выполнении запроса "' . $this->error->getQuery() .
+    '" '. '<br>' . $this->error->getMessage() .
+    '<br>' . ' Файл: ' . $this->error->getFile()  .
+    '<br>' . ' Cтрока: '. $this->error->getLine() ; ?>
 </h1>
 </body>
 </html>

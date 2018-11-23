@@ -15,34 +15,11 @@ class Article extends Model
     public $content;
     public $author_id;
 
-    public static function findAll()
-    {
-        $db = new Db();
 
-        $sql = 'SELECT * FROM news';
-        $res = $db->query(
-            $sql,
-            static::class,
-            []
-        );
-
-        foreach ($res as $article) {
-
-            $au_id = $article->author_id;
-
-            if (isset($au_id)) {
-                $author = Author::findById($au_id);
-
-
-                $article->author_id = $author->first_name . ' ' . $author->last_name;
-            }
-        }
-        return $res;
-    }
 
     protected function validateTitle($title)
     {
-        if(strlen($title <= 3)) {
+        if(strlen($title) <= 3) {
             return ['valid' =>false,'msg' =>'Длина заголовка меньше 3 символов!'
             ];
         }

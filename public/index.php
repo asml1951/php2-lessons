@@ -3,8 +3,14 @@
 include __DIR__ . '/../App/autoload.php';
 
 use SebastianBergmann\Timer\Timer;
+use App\Models\View;
+use App\Exceptions\DbException;
+use App\Exceptions\SQLException;
+use App\Exceptions\NotFoundException;
 
-
+/*$ex = new \Exception('Ошибка',100);
+var_dump($ex->getMessage());
+*/
 
 $uri = $_SERVER['REQUEST_URI'];
 $parts = explode('/',$uri);
@@ -17,18 +23,24 @@ try {
     $ctrl();
 
 
-} catch (\App\DbException  $error) {
+} catch (DbException $error) {
     $log = \App\Logger::getInstance();
     $log->addMessage($error->getMessage(),$error->getFile(),$error->getLine());
-    include __DIR__ . '/../App/Templates/errors.tmpl.php';
+    $view = new View();
+    $view->error = $error;
+    $view->display(__DIR__ . '/../App/Templates/dberror.tmpl.php');
 
-}  catch (\PDOException $error) {
+}  catch (SQLException $error) {
     $log = \App\Logger::getInstance();
     $log->addMessage($error->getMessage(),$error->getFile(),$error->getLine());
-    include __DIR__ . '/../App/Templates/pdo_exception_error.tmpl.php';
+    $view = new View();
+    $view->error = $error;
+    $view->display(__DIR__ . '/../App/Templates/sqlerror.tmpl.php');
 
-}  catch(\App\NotFoundException $error) {
-    include __DIR__ . '/../App/Templates/errors.tmpl.php';
+}  catch(NotFoundException $error) {
+    $view = new View();
+    $view->error = $error;
+    $view->display(__DIR__ . '/../App/Templates/not_found.tmpl.php');
 }
 
 

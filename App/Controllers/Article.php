@@ -8,7 +8,7 @@
 
 namespace App\Controllers;
 use App\Controller;
-use App\NotFoundException;
+use App\Exceptions\NotFoundException;
 
 
 class Article extends Controller
@@ -17,7 +17,7 @@ class Article extends Controller
     {
        $article =  \App\Models\Article::findById($_GET['id']);
        if (is_null($article)) {
-           throw new NotFoundException( 'Новость № ' .$_GET['id'] . ' не найдена!');
+           throw new NotFoundException( 'Ошибка 404 - новость № ' .$_GET['id'] . ' не найдена!');
        }
        $this->view->article = $article;
        $this->view->display(__DIR__ . '/../../App/Templates/article.tmpl');

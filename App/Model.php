@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Models\GetSetMagic;
+use App\Exceptions\Multiexception;
+
 abstract class Model
 {
 
@@ -38,7 +41,8 @@ abstract class Model
 
     public function fill (Array $data)
     {
-       $errors = new MultiException();
+
+       $errors = new Multiexception();
        foreach ($data as $key => $value) {
            $validator = 'validate' . ucfirst($key);
            if (method_exists($this,$validator)) {
@@ -64,7 +68,7 @@ abstract class Model
     {
 
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
+        $sql = 'SELECT *  FROM ' . static::TABLE . ' WHERE id=:id';
         $result = $db->query(
             $sql,
             static::class,

@@ -8,8 +8,9 @@
 
 namespace App\Controllers;
 use App\Controller;
+use App\Models\Article;
 use App\Db;
-use App\MultiException;
+use App\Exceptions\MultiException;
 
 
 class Add_new_article extends Controller
@@ -18,7 +19,7 @@ class Add_new_article extends Controller
     {
         if(!empty($_GET)) {
 
-            $article = new \App\Models\Article();
+            $article = new Article();
             try {
                 $article->fill($_GET);
             } catch (MultiException $er) {

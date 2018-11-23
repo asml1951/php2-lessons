@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-use App\DbException;
+use App\Exceptions\DbException;
+use App\Exceptions\SQLException;
 use App\Models\View;
 
 class Db
@@ -23,33 +24,38 @@ class Db
                     \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 ]
             );
-
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
         } catch (\PDOException $error)
         {
-           throw new \App\DbException( 'Ошибка подключения к БД');
+           throw new DBException('Ошибка подключения к БД');
 
         }
     }
 
     public function query($sql, $class , $data=[])
     {
-        try {
+
 
             $sth = $this->dbh->prepare($sql);
+            try {
 
-            $res = $sth->execute($data);
-        } catch ( \PDOException $error ) {
-            include __DIR__ . '/../App/Templates/errors.tmpl.php';
-        }
+                $res = $sth->execute($data);
 
-        return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+            } catch (\PDOException $error){
+                throw new SQLException($sql,'Не удалось выполнить запрос!');
+            }
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
     public function execute($sql, $params = [])
     {
         $sth = $this->dbh->prepare($sql);
-        $result = $sth->execute($params);
+        try {
+            $result = $sth->execute($params);
+        } catch (\PDOException $error) {
+            throw new SQLException($sql,'Не удалось выполнить запрос!');
+        }
         return $result;
 
     }
