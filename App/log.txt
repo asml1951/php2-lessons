@@ -48,3 +48,4 @@
 2018-11-23 11:46:51 Ошибка подключения к БД C:\OSPanel\domains\php2-lessons\App\Db.php 31
 2018-11-23 11:51:30 Ошибка подключения к БД C:\OSPanel\domains\php2-lessons\App\Db.php 31
 2018-11-23 11:52:30 Ошибка подключения к БД C:\OSPanel\domains\php2-lessons\App\Db.php 31
+2018-11-23 15:19:18 Ошибка подключения к БД C:\OSPanel\domains\php2-lessons\App\Db.php 31

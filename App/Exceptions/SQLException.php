@@ -8,9 +8,6 @@
 
 namespace App\Exceptions;
 
-
-use Throwable;
-
 class SQLException extends \Exception
 {
     protected $query;
