@@ -13,9 +13,8 @@ namespace App;
  *
  * @property array $articles
  */
-class View implements \Countable , \Iterator
+class View implements \Countable //,\Iterator
 {
-
     use GetSetMagic;
 
 
@@ -47,7 +46,7 @@ class View implements \Countable , \Iterator
 
     public function count()
     {
-        return count($this->data);
+        return count($this->data,COUNT_RECURSIVE) - 1;
     }
 
     public function current()

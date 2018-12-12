@@ -27,6 +27,14 @@ class Article extends Model
 
     public $author_id;
 
+    public function  __get($prop)
+    {
+        if ($prop === 'author') {
+            return Author::findById($this->author_id);
+        } else {
+            return null;
+        }
+    }
 
     public static function getLatestNews()
     {
@@ -37,18 +45,8 @@ class Article extends Model
             static::class,
             []
         );
-
-        foreach ($res as $article) {
-
-            $au_id = $article->author_id;
-
-            if (isset($au_id)) {
-                $article->author = Author::findById($au_id);
-            }
-        }
-
         return $res;
 
     }
-    }
+}
 

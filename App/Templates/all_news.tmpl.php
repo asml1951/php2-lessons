@@ -6,9 +6,9 @@
 <body>
 
 <div><h1>Все новости</h1></div>
-<div><h3>Всего новостей <?php echo count($this->data) ;?></h3></div>
+<div><h3>Всего новостей <?php echo count($this) ;?></h3></div>
 <ul>
-    <?php  foreach($this as   $article){ ?>
+    <?php  foreach($this->articles as $article){ ?>
 
     <li><div><h3><a href="/App/article.php?id=<?= $article->id; ?>"><?= 'Новость №' . $article->id  . ' ' . 'Автор: ' . $article->author->first_name . ' '
                     . $article->author->last_name ?></a></h3>
