@@ -6,7 +6,7 @@
 <body>
 
 <div><h1>Все новости</h1></div>
-<div><h3>Всего новостей <?php echo count($this) ;?></h3></div>
+<div><h3>Всего новостей <?php echo count($this->articles) ;?></h3></div>
 <ul>
     <?php  foreach($this->articles as $article){ ?>
 
