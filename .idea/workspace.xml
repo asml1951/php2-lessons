@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52cac6c2-daa6-4939-9041-9bc83a53fe41" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Templates/all_news.tmpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Templates/all_news.tmpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/View.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_news.php" beforeDir="false" afterPath="$PROJECT_DIR$/all_news.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/App/View.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
-              <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+              <caret line="57" column="34" lean-forward="true" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -263,12 +260,12 @@
       <workItem from="1544513791408" duration="10027000" />
       <workItem from="1544529934699" duration="945000" />
       <workItem from="1544611325902" duration="5983000" />
-      <workItem from="1544687677018" duration="2776000" />
+      <workItem from="1544687677018" duration="3398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60724000" />
+    <option name="totallyTimeSpent" value="61346000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1938" y="9" width="1861" height="1032" extended-state="0" />
@@ -474,7 +471,7 @@
     <entry file="file://$PROJECT_DIR$/App/View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="57" column="46" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+          <caret line="57" column="34" lean-forward="true" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
         </state>
       </provider>
     </entry>

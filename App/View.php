@@ -55,7 +55,7 @@ class View implements \Countable, \Iterator
     }
     public function next()
     {
-        echo 'NEXT' . '<br>';   // Для отладки
+  //      echo 'NEXT' . '<br>';    Для отладки
         next($this->data);
     }
     public function key()
